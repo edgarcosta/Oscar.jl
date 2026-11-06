@@ -278,7 +278,8 @@ and/or `:pdf`. The PDF manual is written to `docs/build/Oscar.jl.pdf`.
 
 The optional parameter `pdf_method` selects how the PDF manual is compiled:
   - `:pdf_via_latex`: Use the local LaTeX installation, which must provide
-    `latexmk` and `lualatex` (default).
+    `latexmk` and `lualatex` (default). Without the font JuliaMono, code
+    blocks lack some characters.
   - `:pdf_via_docker`: Use the Docker image of `Documenter.jl`.
 
 To prevent the opening of the browser at the end, set the optional parameter

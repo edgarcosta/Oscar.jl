@@ -74,7 +74,16 @@ jobs:
             python3-pygments \
             fontconfig \
             fonts-dejavu-core \
-            fonts-dejavu-extra
+            fonts-dejavu-extra \
+            fonts-stix
+      - name: Install JuliaMono
+        # docs/src/assets/custom.sty takes the characters that DejaVu Sans
+        # Mono lacks from JuliaMono, which Ubuntu does not package
+        run: |
+          sudo mkdir -p /usr/local/share/fonts/juliamono
+          curl -fsSL https://github.com/cormullion/juliamono/releases/download/v0.63.2/JuliaMono-ttf.tar.gz \
+            | sudo tar -xz -C /usr/local/share/fonts/juliamono
+          fc-cache -f
       - name: Build
         env:
           DOCUMENTER_LATEX_SHOW_LOGS: true
