@@ -19,12 +19,11 @@
 \renewcommand{\mathfrak}[1]{{\symfrak{#1}}}
 \renewcommand{\mathscr}[1]{{\symscr{#1}}}
 
-% DejaVu Sans Mono lacks some characters of Julia output (⋮, ₖ, ℓ, 𝔸);
-% take them from JuliaMono, the code font of the HTML manual. A fallback
-% font that is not installed is a Lua error, hence the test.
+% The code font of the HTML manual. Documenter's DejaVu Sans Mono lacks some
+% characters of Julia output (⋮, ₖ, ℓ, 𝔸). Without contextual alternates,
+% as in the HTML manual: they draw => as an arrow.
 \IfFontExistsTF{JuliaMono}{
-  \directlua{luaotfload.add_fallback("monofallback", {"JuliaMono:mode=harf;"})}
-  \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase, RawFeature={fallback=monofallback}]
+  \setmonofont{JuliaMono}[Scale=MatchLowercase, Contextuals=NoAlternate]
 }{
   \PackageWarningNoLine{custom}{JuliaMono not found, code blocks will lack
     some characters}
